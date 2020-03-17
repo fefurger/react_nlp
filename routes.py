@@ -100,14 +100,39 @@ class GraphsList(Resource):
 @ns_graphs.route("/<string:filename>")
 class Graph(Resource):
     @api.expect(upload_parser)
-    def put(self, filename): # update a graph
-        uploaded_file = args['file']
-        # TO_DO
-        return {"response": "graph updated"}, 204
+    def put(self, filename): # update a text
+        uploaded_file = request.files['file']
+        if uploaded_file.filename[-3:] in GRAPH_FORMATS:
+            target = False
+            for f in glob.glob('./files/*.grf'):
+                if f.split('/')[-1].split('\\')[-1] == uploaded_file.filename:
+                    return {"reponse": "'" + uploaded_file.filename + "' already exists"}, 403
+                if f.split('/')[-1].split('\\')[-1] == filename:
+                    target = True
+            if target == False:
+                return {"response": "target '" + filename + "' has not been found"}, 403
+            try:
+                os.remove(os.path.join('./files/', filename))
+                uploaded_file.save(os.path.join('./files/', uploaded_file.filename))
+                return {"response": "graph updated"}, 200
+            except:
+                return {"response": "something went wrong, graph has not been updated"}
+        else: 
+            return {"reponse": "wrong format: graph file expected"}, 403
 
-    def delete(self, filename): # delete a graph
-        # TO_DO
-        return {"reponse": "graph deleted"}, 200
+    
+    def delete(self, filename): # delete a text
+        target = False
+        for f in glob.glob('./files/*.grf'):
+            if f.split('/')[-1].split('\\')[-1] == filename:
+                target = True
+        if target == False:
+            return {"response": "target '" + filename + "' has not been found"}, 403
+        try:
+            os.remove(os.path.join('./files/', filename))
+            return {"response": "graph deleted"}, 200
+        except:
+            return {"response": "something went wrong, graph has not been deleted"}
 
 
 

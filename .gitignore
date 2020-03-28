@@ -1,2 +1,4 @@
 *.pyc
-files/
+files/*.txt
+files/*.grf
+python-unitex-master/

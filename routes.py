@@ -136,10 +136,23 @@ class Graph(Resource):
 
 
 
-@ns_nlp.route("/")
+@ns_nlp.route("/<string:graph>&<string:text>")
 class PerformNLP(Resource):
     def get(self): # get the anaphoras
-        args = parser.parse_args()
-        nlp_to_use = args['nlp']
-        # TO_DO
+        target_g = False
+        for f in glob.glob('./files/*.grf'):
+            if f.split('/')[-1].split('\\')[-1] == graph:
+                target_g = True
+        if target_g == False:
+            return {"response": "target '" + filename + "' has not been found"}, 403
+        target_t = False
+        for f in glob.glob('./files/*.txt'):
+            if f.split('/')[-1].split('\\')[-1] == text:
+                target_t = True
+        if target_t == False:
+            return {"response": "target '" + filename + "' has not been found"}, 403
+        try:
+            performNLP(graph, text)
+        except:
+            return {"response": "there was an error while running NLP services"}
         return {"reponse": []}, 200

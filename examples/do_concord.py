@@ -220,8 +220,9 @@ def execute(path, grammar, options):
 
 
 def parser(texte) :
-    s1 = texte.split("<")[1:]
-    s2 = [s1[i].split(">")[-1] for i in range(0, len(s1), 2)]
+    # s1 = texte.split("<")[1:]
+    s1 = texte.split("\t")
+    s2 = [s1[i].split("\t")[-1] for i in range(1, len(s1), 2)]
     return s2
 
 

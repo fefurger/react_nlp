@@ -42,5 +42,3 @@ To apply run application, run the script run.sh
     bash run.sh
 
 * Windows :
-
-    Fuck you !

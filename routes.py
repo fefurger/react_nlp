@@ -1,5 +1,6 @@
 from flask import request
 from flask_restplus import Resource
+from context import read_text, get_context
 import glob
 import os
 import do_concord
@@ -154,8 +155,10 @@ class PerformNLP(Resource):
         try:
             graph = 'files/' + graph
             text = 'files/' + text
+            plain_text = read_text(text)
             outputPath = 'files/tmp.txt'
             output = do_concord.performNLP(graph, text)
+            context_words = get_context(output, plain_text)
         except:
             return {"response": "there was an error while running NLP services"}
         return {"reponse": output}, 200

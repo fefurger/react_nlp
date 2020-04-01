@@ -1,0 +1,102 @@
+	<adverbe>RÉCIPROQUEMENT</adverbe>	
+	<adverbe>COMME</adverbe>	
+	<adverbe>COMME</adverbe>	
+	<adverbe>plus</adverbe>	
+	<adverbe>plus</adverbe>	
+	<adverbe>bien</adverbe>	
+	<adverbe>plus</adverbe>	
+	<adverbe>donc</adverbe>	
+	<adverbe>sinon</adverbe>	
+	<adverbe>fort</adverbe>	
+	<adverbe>plus</adverbe>	
+	<adverbe>aux pieds</adverbe>	
+	<adverbe>à coup sûr</adverbe>	
+	<adverbe>peut-être pas</adverbe>	
+	<adverbe>jamais</adverbe>	
+	<adverbe>jamais</adverbe>	
+	<adverbe>jamais</adverbe>	
+	<adverbe>Jamais</adverbe>	
+	<adverbe>du Droit</adverbe>	
+	<adverbe>et des</adverbe>	
+	<adverbe>enfin</adverbe>	
+	<adverbe>principalement</adverbe>	
+	<adverbe>et voilà tout</adverbe>	
+	<adverbe>aussi</adverbe>	
+	<adverbe>sur la recommandation</adverbe>	
+	<adverbe>De là</adverbe>	
+	<adverbe>régulièrement</adverbe>	
+	<adverbe>à vue</adverbe>	
+	<adverbe>invariablement</adverbe>	
+	<adverbe>Incontestablement</adverbe>	
+	<adverbe>comment</adverbe>	
+	<adverbe>mieux</adverbe>	
+	<adverbe>En tout cas</adverbe>	
+	<adverbe>non</adverbe>	
+	<adverbe>partout</adverbe>	
+	<adverbe>silencieusement</adverbe>	
+	<adverbe>même</adverbe> <adverbe>anonymement</adverbe>	
+	<adverbe>En somme</adverbe>	
+	<adverbe>moins</adverbe>	
+	<adverbe>aussi</adverbe> <adverbe>peu</adverbe>	
+	<adverbe>autant</adverbe> <adverbe>plus</adverbe>	
+	<adverbe>Cependant</adverbe>	
+	<adverbe>si</adverbe> <adverbe>mathématiquement</adverbe> <adverbe>toujours</adverbe>	
+	<adverbe>même</adverbe>	
+	<adverbe>mieux</adverbe>	
+	<adverbe>si</adverbe>	
+	<adverbe>Quelquefois</adverbe>	
+	<adverbe>en peu de mots</adverbe>	
+	<adverbe>au sujet</adverbe>	
+	<adverbe>souvent</adverbe> <adverbe>comme</adverbe>	
+	<adverbe>une seconde</adverbe>	
+	<adverbe>tant</adverbe>	
+	<adverbe>toujours</adverbe>	
+	<adverbe>partout</adverbe>	
+	<adverbe>en esprit</adverbe>	
+	<adverbe>tout</adverbe> <adverbe>au moins</adverbe>	
+	<adverbe>toutefois</adverbe>	
+	<adverbe>pas</adverbe>	
+	<adverbe>un peu</adverbe> <adverbe>plus que</adverbe>	
+	<adverbe>si</adverbe>	
+	<adverbe>sur ce</adverbe>	
+	<adverbe>chaque jour</adverbe>	
+	<adverbe>jamais</adverbe>	
+	<adverbe>ailleurs</adverbe>	
+	<adverbe>si</adverbe> <adverbe>bien</adverbe>	
+	<adverbe>nature</adverbe>	
+	<adverbe>souvent</adverbe>	
+	<adverbe>jamais</adverbe>	
+	<adverbe>D'ailleurs</adverbe>	
+	<adverbe>évidemment</adverbe> <adverbe>pour jouer</adverbe>	
+	<adverbe>non</adverbe>	
+	<adverbe>plus</adverbe>	
+	<adverbe>plus</adverbe>	
+	<adverbe>en vérité</adverbe>	
+	<adverbe>jamais</adverbe>	
+	<adverbe>question</adverbe>	
+	<adverbe>chronométriquement</adverbe>	
+	<adverbe>même</adverbe>	
+	<adverbe>même</adverbe>	
+	<adverbe>point</adverbe>	
+	<adverbe>à minuit</adverbe>	
+	<adverbe>jamais</adverbe>	
+	<adverbe>soit</adverbe>	
+	<adverbe>soit</adverbe>	
+	<adverbe>invariablement</adverbe>	
+	<adverbe>pas</adverbe>	
+	<adverbe>dessus</adverbe>	
+	<adverbe>enfin</adverbe>	
+	<adverbe>à grands frais</adverbe>	
+	<adverbe>Si</adverbe>	
+	<adverbe>dans ces conditions</adverbe>	
+	<adverbe>bon</adverbe>	
+	<adverbe>D'ailleurs</adverbe>	
+	<adverbe>peu</adverbe>	
+	<adverbe>Toutefois</adverbe>	
+	<adverbe>Ce jour-là</adverbe> <adverbe>même</adverbe>	
+	<adverbe>carrément</adverbe>	
+	<adverbe>comme</adverbe>	
+	<adverbe>droit</adverbe>	
+	<adverbe>la tête haute</adverbe>	
+	<adverbe>En ce moment</adverbe>	
+	<adverbe>petit</adverbe>	

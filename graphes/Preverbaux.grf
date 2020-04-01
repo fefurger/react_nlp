@@ -1,0 +1,38 @@
+#Unigraph
+SIZE 1887 879
+FONT Times New Roman:  10
+OFONT Arial Unicode MS:B 12
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 13487565
+SCOLOR 11164160
+CCOLOR 255
+DBOXES y
+DFRAME y
+DDATE y
+DFILE y
+DDIR n
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+18
+"<E>" 149 367 5 6 8 10 15 17 
+"" 1072 367 0 
+"<E>/</pronom>" 606 442 1 1 
+"en+y/<pronom>" 509 442 1 2 
+"Tutoriel Unitex+Denis Maurel+Université de Tours" 139 181 0 
+"<E>/</pronom>" 436 157 2 1 12 
+"me+te+se+nous+vous/<pronom>" 337 157 1 5 
+"<E>/</pronom>" 382 367 2 1 10 
+"le+la+l'+les/<pronom>" 283 367 1 7 
+"<E>/</pronom>" 550 237 2 1 14 
+"lui+leur/<pronom>" 466 237 1 9 
+"<E>/</pronom>" 612 82 1 1 
+"le+la+l'+les/<pronom>" 513 82 1 11 
+"<E>/</pronom>" 731 306 1 1 
+"en/<pronom>" 642 306 1 13 
+"m'+t'+s'+nous+vous/<pronom>" 260 551 1 16 
+"<E>/</pronom>" 448 551 2 1 3 
+"<E>" 308 442 1 3 

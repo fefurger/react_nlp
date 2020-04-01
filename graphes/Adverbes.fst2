@@ -1,0 +1,10 @@
+0000000001
+-1 Adverbes
+: 2 1 
+: 1 2 
+t 2 1 
+f 
+%<E>
+%<E>/</adverbe>
+%<ADV>/<adverbe>
+f

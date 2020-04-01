@@ -1,0 +1,27 @@
+#Unigraph
+SIZE 1232 840
+FONT Times New Roman:  10
+OFONT Arial Unicode MS:B 12
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 13487565
+SCOLOR 11164160
+CCOLOR 255
+DBOXES y
+DFRAME y
+DDATE y
+DFILE y
+DDIR n
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+7
+"<E>" 68 194 1 2 
+"" 519 194 0 
+"<avoir.V>/<verbe>" 126 194 2 3 6 
+"<V:K>" 309 194 1 4 
+"<E>/</verbe>" 388 194 1 1 
+"Tutoriel Unitex+Denis Maurel+Université de Tours" 44 64 0 
+"été" 234 159 1 3 

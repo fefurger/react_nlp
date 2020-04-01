@@ -1,0 +1,28 @@
+#Unigraph
+SIZE 1392 840
+FONT Times New Roman:  10
+OFONT Arial Unicode MS:B 12
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 13487565
+SCOLOR 11164160
+CCOLOR 255
+DBOXES y
+DFRAME y
+DDATE y
+DFILE y
+DDIR n
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+8
+"<E>" 133 234 2 2 3 
+"" 548 234 0 
+":Adverbes" 188 187 1 3 
+"pas+jamais+aucunement+guère+nullement+plus+point+rien/<négation>" 290 234 1 4 
+"<E>/</négation>" 404 234 2 1 5 
+":Adverbes" 454 182 1 1 
+"Tutoriel Unitex+Denis Maurel+Université de Tours" 89 80 0 
+"/rien n'est pas un adverbe, mais un pronom" 324 354 0 

@@ -280,7 +280,7 @@ def performNLP(grammar, textes, config_file='examples/unitex.yaml'):
     with open(path) as f:
         out = f.read()
         
-    os.system('rm {}'.format(path))
+    # os.system('rm {}'.format(path))
     
     # output = []
     # for a in out :
@@ -288,12 +288,12 @@ def performNLP(grammar, textes, config_file='examples/unitex.yaml'):
     
     pout = parser(out)
     
-    p = pout[1]
-    print('P', p)
-    if p.split("'") == 1 :
-        var = isLocation(p)
-        print('POUT[0]', var)
-    else :
-        print('wrong format')
+    # p = pout[1]
+    # print('P', p)
+    # if p.split("'") == 1 :
+    #     var = isLocation(p)
+    #     print('POUT[0]', var)
+    # else :
+    #     print('wrong format')
         
     return pout

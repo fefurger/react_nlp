@@ -152,13 +152,17 @@ class PerformNLP(Resource):
                 target_t = True
         if target_t == False:
             return {"response": "target '" + text + "' has not been found"}, 403
-        try:
+        # try:
+        if True :
             graph = 'files/' + graph
             text = 'files/' + text
             plain_text = read_text(text)
             outputPath = 'files/tmp.txt'
             output = do_concord.performNLP(graph, text)
-            context_words = get_context(output, plain_text)
-        except:
-            return {"response": "there was an error while running NLP services"}
+            context_words, taggedText = get_context(output, plain_text)
+            print('\n\nT')
+            print(taggedText[:10000])
+            # print(get_context)
+        # except:
+            # return {"response": "There was an error while running NLP services"}
         return {"reponse": output}, 200

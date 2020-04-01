@@ -42,3 +42,36 @@ To apply run application, run the script run.sh
     bash run.sh
 
 * Windows :
+
+## Routes Utilisables :
+### Texts
+|VERB|PATH|RESPONSE|
+|----|----|----|
+| POST | http://127.0.0.1:5000/texts/ | "'texte.txt' has been added" |
+| GET | http://127.0.0.1:5000/texts/ | [<br>  "texte1.txt",<br>  "texte2.txt"<br>  ] |
+| PUT | http://127.0.0.1:5000/texts/{file} | "text updated" |
+| DELETE | http://127.0.0.1:5000/texts/{file} | "text deleted" |
+### graphs
+|VERB|PATH|RESPONSE|
+|----|----|----|
+| POST | http://127.0.0.1:5000/graphs/ | "'grammaire.grf' has been added" |
+| GET | http://127.0.0.1:5000/graphs/ | [<br>  "grammaire1.txt",<br>...,<br>"grammaireN.txt"<br>  ] |
+| PUT | http://127.0.0.1:5000/graphs/{file} | "graph updated" |
+| DELETE | http://127.0.0.1:5000/graphs/{file} | "graph deleted" |
+### nlp
+|VERB|PATH|RESPONSE|
+|----|----|----|
+| GET | http://127.0.0.1:5000/nlp/grammaire.grf&texte.txt | [<br>anaphore1 ,<br>... ,<br>anaphoreN<br>] |
+
+## Scénarios
+Ajouter un texte et un graphe pour appliquer le deuxième sur le premier :
+* POST texts/{text}
+* POST graphs/{graph}
+
+* GET nlp/{graph}&{text}
+Charger la liste des textes pour en mettre à jour un :
+* GET texts/
+* PUT texts/{text}
+
+Supprimer un graphe :
+* DELETE graphs/{graph}

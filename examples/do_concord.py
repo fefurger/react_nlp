@@ -9,6 +9,8 @@ from unitex.tools import *
 from unitex.resources import *
 from unitex.io import *
 
+from sparql import scanaphore, isLocation
+
 
 def convert(grammar) :
     from _unitex import unitex_load_persistent_alphabet,\
@@ -277,6 +279,21 @@ def performNLP(grammar, textes, config_file='examples/unitex.yaml'):
     
     with open(path) as f:
         out = f.read()
-    os.system('rm {}'.format('files/'+path))
+        
+    os.system('rm {}'.format(path))
     
-    return parser(out)
+    # output = []
+    # for a in out :
+    #     output.append(scanaphore(a))
+    
+    pout = parser(out)
+    
+    p = pout[1]
+    print('P', p)
+    if p.split("'") == 1 :
+        var = isLocation(p)
+        print('POUT[0]', var)
+    else :
+        print('wrong format')
+        
+    return pout

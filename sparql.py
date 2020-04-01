@@ -30,3 +30,19 @@ def isLocation(location):
         ret = 0
 
     return ret > 0
+
+def scanaphore(anaphore) :
+    output = []
+    
+    if len(anaphore['env'].split("'")) == 1 :
+        for word in anaphore['env'] :
+            if isLocation(word) :
+                output.append([anaphore['anaphore'], word])
+        if len(output) > 1 :
+            print("Multiple possible references for ")
+            print(anaphore)
+            print(output)
+        elif not output :
+            return output
+        
+    return output[0]

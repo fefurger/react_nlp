@@ -45,23 +45,23 @@ To apply run application, run the script run.sh
 
 ## Routes Utilisables :
 ### Texts
-|VERB|PATH|RESPONSE|
+|VERB|CURL|RESPONSE|
 |----|----|----|
-| POST | http://127.0.0.1:5000/texts/ | "'texte.txt' has been added" |
-| GET | http://127.0.0.1:5000/texts/ | [<br>  "texte1.txt",<br>  "texte2.txt"<br>  ] |
-| PUT | http://127.0.0.1:5000/texts/{file} | "text updated" |
-| DELETE | http://127.0.0.1:5000/texts/{file} | "text deleted" |
+| POST | curl -X POST "http://localhost:5000/texts/" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "file=@textToAdd.txt;type=text/plain" | textToAdd.txt has been added
+| GET | curl -X GET "http://localhost:5000/texts/" -H "accept: application/json" | [<br>  "texte1.txt",<br>  "texte2.txt"<br>  ] |
+| PUT | curl -X PUT "http://localhost:5000/texts/textToUpdate.txt" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "file=@newText.txt;type=text/plain" | "text updated" |
+| DELETE | curl -X DELETE "http://localhost:5000/texts/textToDelete.txt" -H "accept: application/json" | "text deleted" |
 ### graphs
 |VERB|PATH|RESPONSE|
 |----|----|----|
-| POST | http://127.0.0.1:5000/graphs/ | "'grammaire.grf' has been added" |
-| GET | http://127.0.0.1:5000/graphs/ | [<br>  "grammaire1.txt",<br>...,<br>"grammaireN.txt"<br>  ] |
-| PUT | http://127.0.0.1:5000/graphs/{file} | "graph updated" |
-| DELETE | http://127.0.0.1:5000/graphs/{file} | "graph deleted" |
+| POST | curl -X POST "http://localhost:5000/graphs/" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "file=@graphToAdd.grf;type=text/plain" | "'graphToAdd.grf' has been added" |
+| GET | curl -X GET "http://localhost:5000/graphs/" -H "accept: application/json" | [<br>  "graph1.grf",<br>...,<br>"graphN.grf"<br>  ] |
+| PUT | curl -X PUT "http://localhost:5000/graphs/graphToUpdate.txt" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "file=@newGraph.txt;type=text/plain" | "graph updated" |
+| DELETE | curl -X DELETE "http://localhost:5000/graphs/graphToDelete.txt" -H "accept: application/json" | "graph deleted" |
 ### nlp
 |VERB|PATH|RESPONSE|
 |----|----|----|
-| GET | http://127.0.0.1:5000/nlp/{graph}&{file} | [<br>anaphore1 ,<br>... ,<br>anaphoreN<br>] |
+| GET | curl -X GET "http://localhost:5000/nlp/graph.fst2&text.txt" -H "accept: application/json" | [<br>anaphore1 ,<br>... ,<br>anaphoreN<br>] |
 
 ## Scénarios
 * Ajouter un texte et un graphe pour appliquer le deuxième sur le premier :

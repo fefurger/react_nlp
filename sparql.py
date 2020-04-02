@@ -1,12 +1,21 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
-
+import copy
 
 #La langue influe sur la labellisation des objets
 ENDPOINT = "http://fr.dbpedia.org/sparql"
 sparql = SPARQLWrapper(ENDPOINT)
 
 
+def filterPunctuation(text) :
+    output = copy.copy(text)
+    punctuations = ["\n", "!","\"","#","$","%","&","'","(","*","+",","," ","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","`","{","|","}","~", ")"]
+    for p in punctuations :
+        output = output.replace(p, ' ')
+    return output
+
+
 def isLocation(location):
+    location = filterPunctuation(location)
     if '_' not in location:
         location = '_'.join(word.capitalize() for word in location.split())
 

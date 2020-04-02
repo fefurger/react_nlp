@@ -156,13 +156,13 @@ class PerformNLP(Resource):
         if True :
             graph = 'files/' + graph
             text = 'files/' + text
+            outpath = '_processed.'.join(text.split('.'))
             plain_text = read_text(text)
             outputPath = 'files/tmp.txt'
             output = do_concord.performNLP(graph, text)
-            context_words, taggedText = get_context(output, plain_text)
-            print('\n\nT')
-            print(taggedText[:10000])
-            # print(get_context)
+            taggedText, couples = get_context(output, plain_text)
+            with open(outpath, 'w') as f :
+                f.write(taggedText)
         # except:
             # return {"response": "There was an error while running NLP services"}
-        return {"reponse": output}, 200
+        return {"reponse": couples}, 200

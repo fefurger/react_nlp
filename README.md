@@ -64,14 +64,17 @@ To apply run application, run the script run.sh
 | GET | http://127.0.0.1:5000/nlp/grammaire.grf&texte.txt | [<br>anaphore1 ,<br>... ,<br>anaphoreN<br>] |
 
 ## Scénarios
-Ajouter un texte et un graphe pour appliquer le deuxième sur le premier :
-* POST texts/{text}
-* POST graphs/{graph}
+* Ajouter un texte et un graphe pour appliquer le deuxième sur le premier :
 
-* GET nlp/{graph}&{text}
-Charger la liste des textes pour en mettre à jour un :
-* GET texts/
-* PUT texts/{text}
+    POST texts/{text}
+    POST graphs/{graph}
+    GET nlp/{graph}&{text}
 
-Supprimer un graphe :
-* DELETE graphs/{graph}
+* Charger la liste des textes pour en mettre à jour un :
+
+    GET texts/
+    PUT texts/{text}
+
+* Supprimer un graphe :
+
+    DELETE graphs/{graph}

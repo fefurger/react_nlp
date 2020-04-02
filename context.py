@@ -13,62 +13,52 @@ def read_text(textPath):
 def around(ana, bf, af):
     couples = []
     location = False
-    taggedBefore = bf[:- max(10, len(bf))]
-    for b in bf:#[- max(10, len(bf)):] :
-        if b and not "<" in b :
-            if isLocation(b) :
-                location = True
-                taggedBefore += ['<reference>{}</reference>'.format(b)]
-                couples.append((b, ana))
-            else :
-                taggedBefore += [b]
+    # taggedBefore = bf[:- min(10, len(bf))]
+    for b in bf[:- min(10, len(bf))] :
+        if isLocation(b) :
+            location = True
+            # taggedBefore += ['<reference>{}</reference>'.format(b)]
+            couples.append((b, ana))
+        # taggedBefore += [b]
     
-    taggedAfter = []
-    for a in af:#[:min(10, len(af))] :
-        if a and not "<" in a :
-            if isLocation(a) :
-                location = True
-                taggedAfter += ['<reference>{}</reference>'.format(a)]
-                couples.append((a, ana))
-            else :
-                taggedAfter += [a]
-    taggedAfter += af[min(10, len(af)):]
+    # taggedAfter = []
+    for a in af[:min(10, len(af))] :
+        if isLocation(a) :
+            location = True
+            # taggedAfter += ['<reference>{}</reference>'.format(a)]
+            couples.append((a, ana))
+        # taggedAfter += [a]
+    # taggedAfter += af[min(10, len(af)):]
         
     if location :
         ana = "<anaphore>"+ana+"</anaphore> "
         
-    return taggedBefore + [ana] + taggedAfter, couples
+    return bf + [ana] + af, couples
+    
 
 
 def get_context(anas, text): 
     test_tag = copy.copy(text)
-    print('test_tag')
-    print(test_tag)
-    print('TexT')
-    print(text)
     count = 0
     couples = []
     for ana in list(set(anas)):
         count += 1
-        splited = test_tag.split(ana)
+        splited = test_tag.split(' '+ana+' ')
         split_len = len(splited)
-        print(str(count) + '/' +str(len(anas)))
+        print(str(count) + '/' +str(len(list(set(anas)))))
         taggedText = ''
         for i in range(split_len-1):
-            sB = splited[i].split(' ')
-            sA = splited[i+1].split(' ')
+            sB = splited[i][-min(200, len(splited[i])):].split(' ')
+            sA = splited[i+1][:min(200, len(splited[i+1]))].split(' ')
             sepB = - min(10, len(sB))
             sepA = min(10, len(sA))
             pronom, tmpCouples = around(ana, sB[sepB:], (sA[:sepA]))
             couples += tmpCouples
-            taggedText += ' '.join(sB[:sepB] + pronom)
+            taggedText += splited[i]+' '.join(pronom)
             if i+2 == split_len :
-                taggedText += ' '.join(sA[sepA:])
-            else :
-                splited[i+1] = ' '.join(sA[sepA:])
+                taggedText += splited[-1]
         
         if taggedText :
             test_tag = copy.copy(taggedText)
-    print('TT', taggedText)
         
     return test_tag, couples

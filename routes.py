@@ -154,9 +154,9 @@ class PerformNLP(Resource):
             return {"response": "target '" + text + "' has not been found"}, 403
         # try:
         if True :
+            outpath = 'output/'+'_processed.'.join(text.split('.'))
             graph = 'files/' + graph
             text = 'files/' + text
-            outpath = '_processed.'.join(text.split('.'))
             plain_text = read_text(text)
             outputPath = 'files/tmp.txt'
             output = do_concord.performNLP(graph, text)

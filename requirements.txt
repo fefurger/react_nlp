@@ -1,4 +1,3 @@
 Flask
 Flask-RestPlus
 Werkzeug==0.16.1
-nltk

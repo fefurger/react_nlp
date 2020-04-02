@@ -61,7 +61,7 @@ To apply run application, run the script run.sh
 ### nlp
 |VERB|PATH|RESPONSE|
 |----|----|----|
-| GET | http://127.0.0.1:5000/nlp/grammaire.grf&texte.txt | [<br>anaphore1 ,<br>... ,<br>anaphoreN<br>] |
+| GET | http://127.0.0.1:5000/nlp/{graph}&{file} | [<br>anaphore1 ,<br>... ,<br>anaphoreN<br>] |
 
 ## Scénarios
 * Ajouter un texte et un graphe pour appliquer le deuxième sur le premier :

@@ -1,3 +1,6 @@
 *.pyc
 python-unitex-master/
 unitex.yaml
+files/*.txt
+files/*.grf
+.txt

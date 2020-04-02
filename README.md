@@ -46,6 +46,9 @@ Executer la commande depuis le dossier principal
 | GET | curl -X GET "http://localhost:5000/nlp/graph.fst2&text.txt" -H "accept: application/json" | [<br>anaphore1 ,<br>... ,<br>anaphoreN<br>] |
 
 ## Scénarios
+* Récuperer les couples (anaphore, pronom) d'un texte :
+    * GET nlp/anaphores.grf&{text}
+
 * Ajouter un texte et un graphe pour appliquer le deuxième sur le premier :
     * POST texts/{text}
     * POST graphs/{graph}

@@ -1,58 +1,61 @@
-# from nltk import word_tokenize
 from do_concord import isLocation
 import copy
 
+_COUNT = 0
+
 def read_text(textPath):
-    print('TP', textPath)
     with open(textPath, 'r') as tmp:
-        text = tmp.read()
-        print(text)
-        text = text.replace('\r', '')
+        text = tmp.read().replace('\r', '')
         return text
 
-def around(ana, bf, af):
+
+#Return : taggedText : "text<pronom>text", couples : [(location, pronoun)]
+def around(pronoun, beforePronoun, afterPronoun):
     couples = []
     location = False
-    # taggedBefore = bf[:- min(10, len(bf))]
-    for b in bf[:- min(10, len(bf))] :
-        if isLocation(b) :
-            location = True
-            # taggedBefore += ['<reference>{}</reference>'.format(b)]
-            couples.append((b, ana))
-        # taggedBefore += [b]
     
-    # taggedAfter = []
-    for a in af[:min(10, len(af))] :
-        if isLocation(a) :
+    for bp in beforePronoun : 
+        if len(bp)>2 and isLocation(bp) :
             location = True
-            # taggedAfter += ['<reference>{}</reference>'.format(a)]
-            couples.append((a, ana))
-        # taggedAfter += [a]
-    # taggedAfter += af[min(10, len(af)):]
+            couples.append((bp, pronoun))
+    
+    for ap in afterPronoun :
+        if len(ap)>2 and isLocation(ap) :
+            location = True
+            couples.append((ap, pronoun))
         
     if location :
-        ana = "<anaphore>"+ana+"</anaphore> "
+        pronoun = "<pronom>"+pronoun+"</pronom> "
         
-    return bf + [ana] + af, couples
-    
+    return beforePronoun + [pronoun] + afterPronoun, couples
 
 
+def counter() :
+    global _COUNT
+    _COUNT+=1
+    return _COUNT
+
+
+#Return textTag : "texte<pronom>text", couples : [(location, pronoun)]
 def get_context(anas, text): 
     test_tag = copy.copy(text)
-    count = 0
     couples = []
+    
     for ana in list(set(anas)):
-        count += 1
         splited = test_tag.split(' '+ana+' ')
         split_len = len(splited)
-        print(str(count) + '/' +str(len(list(set(anas)))))
+        _COUNT = 0
+        
+        print(ana+' - '+str(counter())+'/'+str(len(list(set(anas)))))
+        
         taggedText = ''
         for i in range(split_len-1):
+            print('\t'+str(i)+'/'+str(split_len))
             sB = splited[i][-min(200, len(splited[i])):].split(' ')
             sA = splited[i+1][:min(200, len(splited[i+1]))].split(' ')
             sepB = - min(10, len(sB))
             sepA = min(10, len(sA))
-            pronom, tmpCouples = around(ana, sB[sepB:], (sA[:sepA]))
+            pronom, tmpCouples = around(ana, sB[sepB:], sA[:sepA])
             couples += tmpCouples
             taggedText += splited[i]+' '.join(pronom)
             if i+2 == split_len :

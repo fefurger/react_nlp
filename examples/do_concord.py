@@ -9,7 +9,7 @@ from unitex.tools import *
 from unitex.resources import *
 from unitex.io import *
 
-from sparql import scanaphore, isLocation
+from sparql import isLocation
 
 
 def convert(grammar) :

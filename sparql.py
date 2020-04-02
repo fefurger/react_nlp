@@ -16,19 +16,19 @@ def filterPunctuation(text) :
 
 def isLocation(location):
     location = filterPunctuation(location)
-    if '_' not in location:
-        location = '_'.join(word.capitalize() for word in location.split())
-
-    sparql.setQuery("""
-        SELECT ?isloc
-        WHERE {{
-            BIND(EXISTS {{
-                dbpedia-fr:{} rdf:type dbpedia-owl:Location
-            }} AS ?isloc) .
-        }}
-    """.format(location))
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
+    try :
+        sparql.setQuery("""
+            SELECT ?isloc
+            WHERE {{
+                BIND(EXISTS {{
+                    dbpedia-fr:{} rdf:type dbpedia-owl:Location
+                }} AS ?isloc) .
+            }}
+        """.format(location))
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+    except :
+        return False
     
     try:
         ret = int(results['results']['bindings'][0]['isloc']['value'])
@@ -37,21 +37,4 @@ def isLocation(location):
         print('Warning: could not retrieve result. Returning False as precaution')
         print(sys.exc_info()[1])
         ret = 0
-
     return ret > 0
-
-def scanaphore(anaphore) :
-    output = []
-    
-    if len(anaphore['env'].split("'")) == 1 :
-        for word in anaphore['env'] :
-            if isLocation(word) :
-                output.append([anaphore['anaphore'], word])
-        if len(output) > 1 :
-            print("Multiple possible references for ")
-            print(anaphore)
-            print(output)
-        elif not output :
-            return output
-        
-    return output[0]

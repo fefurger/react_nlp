@@ -1,14 +1,14 @@
 from flask import request
 from flask_restplus import Resource
-from context import read_text, get_context
+#from context import read_text, get_context
 import glob
 import os
-import do_concord
+#import do_concord
 
 from rest import app, api, upload_parser, parser, ns_graphs, ns_nlp, ns_texts
 
 TEXT_FORMATS = ["txt"]
-GRAPH_FORMATS = ["grf"]
+GRAPH_FORMATS = ["grf", "st2"]
 
 @ns_texts.route("/")
 class TextsList(Resource):
@@ -76,9 +76,10 @@ class Text(Resource):
 
 @ns_graphs.route("/")
 class GraphsList(Resource):
-    def get(self): # get the list of stored texts
+    def get(self): # get the list of stored graphs
         data = []
-        for f in glob.glob('./files/*.grf'): # read txt files in static folder
+        files = glob.glob('./files/*.grf') + glob.glob('./files/*.fst2')
+        for f in files: # read grf files in static folder
             data.append(f.split('/')[-1].split('\\')[-1])
         return {"response": data}, 200
 
@@ -87,7 +88,8 @@ class GraphsList(Resource):
     def post(self): # add a new text
         uploaded_file = request.files['file']
         if uploaded_file.filename[-3:] in GRAPH_FORMATS:
-            for f in glob.glob('./files/*.grf'):
+            files = glob.glob('./files/*.grf') + glob.glob('./files/*.fst2')
+            for f in files:
                 if f.split('/')[-1].split('\\')[-1] == uploaded_file.filename:
                     return {"reponse": "'" + uploaded_file.filename + "' already exists"}, 403
             uploaded_file.save(os.path.join('./files/', uploaded_file.filename))
@@ -105,7 +107,8 @@ class Graph(Resource):
         uploaded_file = request.files['file']
         if uploaded_file.filename[-3:] in GRAPH_FORMATS:
             target = False
-            for f in glob.glob('./files/*.grf'):
+            files = glob.glob('./files/*.grf') + glob.glob('./files/*.fst2')
+            for f in files:
                 if f.split('/')[-1].split('\\')[-1] == uploaded_file.filename:
                     return {"reponse": "'" + uploaded_file.filename + "' already exists"}, 403
                 if f.split('/')[-1].split('\\')[-1] == filename:
@@ -124,7 +127,8 @@ class Graph(Resource):
     
     def delete(self, filename): # delete a text
         target = False
-        for f in glob.glob('./files/*.grf'):
+        files = glob.glob('./files/*.grf') + glob.glob('./files/*.fst2')
+        for f in files:
             if f.split('/')[-1].split('\\')[-1] == filename:
                 target = True
         if target == False:
@@ -141,7 +145,8 @@ class Graph(Resource):
 class PerformNLP(Resource):
     def get(self, graph, text): # get the anaphoras
         target_g = False
-        for f in glob.glob('./files/*.grf'):
+        files = glob.glob('./files/*.grf') + glob.glob('./files/*.fst2')
+        for f in files:
             if f.split('/')[-1].split('\\')[-1] == graph:
                 target_g = True
         if target_g == False:
@@ -153,16 +158,16 @@ class PerformNLP(Resource):
         if target_t == False:
             return {"response": "target '" + text + "' has not been found"}, 403
         # try:
-        if True :
-            outpath = 'output/'+'_processed.'.join(text.split('.'))
-            graph = 'files/' + graph
-            text = 'files/' + text
-            plain_text = read_text(text)
-            outputPath = 'files/tmp.txt'
-            output = do_concord.performNLP(graph, text)
-            taggedText, couples = get_context(output, plain_text)
-            with open(outpath, 'w') as f :
-                f.write(taggedText)
-        # except:
-            # return {"response": "There was an error while running NLP services"}
-        return {"reponse": couples}, 200
+        # if True :
+        #     outpath = 'output/'+'_processed.'.join(text.split('.'))
+        #     graph = 'files/' + graph
+        #     text = 'files/' + text
+        #     plain_text = read_text(text)
+        #     outputPath = 'files/tmp.txt'
+        #     output = do_concord.performNLP(graph, text)
+        #     taggedText, couples = get_context(output, plain_text)
+        #     with open(outpath, 'w') as f :
+        #         f.write(taggedText)
+        # # except:
+        #     # return {"response": "There was an error while running NLP services"}
+        # return {"reponse": couples}, 200

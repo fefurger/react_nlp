@@ -1,6 +1,6 @@
 from flask import request
 from flask_restplus import Resource
-from context import read_text, get_context
+from context import searchLocation
 import glob
 import os
 import do_concord
@@ -140,29 +140,51 @@ class Graph(Resource):
 @ns_nlp.route("/<string:graph>&<string:text>")
 class PerformNLP(Resource):
     def get(self, graph, text): # get the anaphoras
+        
+        #GET GRAPH
         target_g = False
         for f in glob.glob('./files/*.grf'):
             if f.split('/')[-1].split('\\')[-1] == graph:
                 target_g = True
         if target_g == False:
             return {"response": "target '" + graph + "' has not been found"}, 403
+        
+        #GET TEXT
         target_t = False
         for f in glob.glob('./files/*.txt'):
             if f.split('/')[-1].split('\\')[-1] == text:
                 target_t = True
         if target_t == False:
             return {"response": "target '" + text + "' has not been found"}, 403
-        # try:
-        if True :
-            outpath = 'output/'+'_processed.'.join(text.split('.'))
-            graph = 'files/' + graph
-            text = 'files/' + text
-            plain_text = read_text(text)
-            outputPath = 'files/tmp.txt'
-            output = do_concord.performNLP(graph, text)
-            taggedText, couples = get_context(output, plain_text)
-            with open(outpath, 'w') as f :
+        
+        ##APPLY GRAPH ON TEXT
+        
+        #INIT PATHS
+        outpath = 'output/'+'_processed.'.join(text.split('.'))
+        graph = 'files/' + graph
+        text = 'files/' + text
+        outputPath = 'files/tmp.txt'
+            
+        try: # GET PRONOUNS - NLP
+            pronouns = do_concord.performNLP(graph, text) 
+        except :
+            return {"response": "Error while applying graph on text : do_concord.performNLP(graph, text)"}  
+         
+        try: # READ TEXT
+            with open(text, 'r') as tmp: 
+                text = tmp.read().replace('\r', '')
+        except IOError:
+            return {"response": "There was an error while running NLP services"}
+            
+        try: #GET TAGS & COUPLES - SPARQL
+            taggedText, couples = searchLocation(pronouns, text) 
+        except:
+            return {"response": "Error while applying graph on text : sparql.searchLocation(prounous, text)"} 
+            
+        try: #WRITE TAGGED_TEXT
+            with open(outpath, 'w') as f : 
                 f.write(taggedText)
-        # except:
-            # return {"response": "There was an error while running NLP services"}
+        except IOError:
+            return {"response": "Error while writing "}
+        
         return {"reponse": couples}, 200

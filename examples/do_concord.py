@@ -228,10 +228,10 @@ def parser(texte) :
     return s2
 
 
-def performNLP(grammar, textes, config_file='examples/unitex.yaml'):
+def performNLP(grammarPath, textes, config_file='examples/unitex.yaml'):
 # if __name__ == "__main__":
-    if grammar[-3:]=='grf' :
-        grammar = convert(grammar)
+    if grammarPath[-3:]=='grf' :
+        grammar = convert(grammarPath)
     
     files = []
     for arg in [textes]:
@@ -260,12 +260,11 @@ def performNLP(grammar, textes, config_file='examples/unitex.yaml'):
     results = []
 
     for f in files:
-        sys.stdout.write("Processing '%s'...\n" % f)
+        sys.stdout.write("\nApplying %s to '%s'\n" % (grammarPath, f))
 
         # This function illustrate the whole Unitex process used in order
         # to produce a concordance file.
         result = execute(f, grammar, options)
-        sys.stdout.write("   -> %s\n" % result)
 
         results.append(result)
 
@@ -274,26 +273,13 @@ def performNLP(grammar, textes, config_file='examples/unitex.yaml'):
         free_persistent_fst2(grammar)
         free_resources(options)
         
+    # Return parsed pronouns
     path = 'tmp.'+textes.split('.')[-1]
-    out=''
+    pronouns=''
     
     with open(path) as f:
-        out = f.read()
+        pronouns = f.read()
+    
+    parsed_pronouns = parser(pronouns)
         
-    # os.system('rm {}'.format(path))
-    
-    # output = []
-    # for a in out :
-    #     output.append(scanaphore(a))
-    
-    pout = parser(out)
-    
-    # p = pout[1]
-    # print('P', p)
-    # if p.split("'") == 1 :
-    #     var = isLocation(p)
-    #     print('POUT[0]', var)
-    # else :
-    #     print('wrong format')
-        
-    return pout
+    return parsed_pronouns

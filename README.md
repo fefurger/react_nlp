@@ -49,6 +49,9 @@ Executer la commande depuis le dossier principal
 * Récuperer les couples (anaphore, pronom) d'un texte :
     * GET nlp/anaphores.grf&{text}
 
+`files/` contient des exemples de textes non traités.
+`output/` contient textes sur lesquels les graphes ont étés appliqués.
+
 * Ajouter un texte et un graphe pour appliquer le deuxième sur le premier :
     * POST texts/{text}
     * POST graphs/{graph}

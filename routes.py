@@ -1,13 +1,10 @@
 from flask import request
 from flask_restplus import Resource
-<<<<<<< HEAD
-from context import searchLocation
-=======
-#from context import read_text, get_context
->>>>>>> 95f54910e74b276458895d5e2fb2d24b8c65e644
+from sparql import searchLocation
 import glob
 import os
-#import do_concord
+
+import do_concord
 
 from rest import app, api, upload_parser, parser, ns_graphs, ns_nlp, ns_texts
 
@@ -148,7 +145,6 @@ class Graph(Resource):
 @ns_nlp.route("/<string:graph>&<string:text>")
 class PerformNLP(Resource):
     def get(self, graph, text): # get the anaphoras
-        
         #GET GRAPH
         target_g = False
         files = glob.glob('./files/*.grf') + glob.glob('./files/*.fst2')
@@ -178,7 +174,6 @@ class PerformNLP(Resource):
             pronouns = do_concord.performNLP(graph, text) 
         except :
             return {"response": "Error while applying graph on text : do_concord.performNLP(graph, text)"}  
-         
         try: # READ TEXT
             with open(text, 'r') as tmp: 
                 text = tmp.read().replace('\r', '')
@@ -195,5 +190,6 @@ class PerformNLP(Resource):
                 f.write(taggedText)
         except IOError:
             return {"response": "Error while writing "}
+        os.system('rm tmp.txt')
         
         return {"reponse": couples}, 200

@@ -230,9 +230,9 @@ def parser(texte) :
 
 def performNLP(grammarPath, textes, config_file='examples/unitex.yaml'):
 # if __name__ == "__main__":
+    print("TAMEEERE")
     if grammarPath[-3:]=='grf' :
         grammar = convert(grammarPath)
-    
     files = []
     for arg in [textes]:
         if os.path.isdir(arg) is True:

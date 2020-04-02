@@ -1,6 +1,5 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
 import copy
-import os
 
 #La langue influe sur la labellisation des objets
 ENDPOINT = "http://fr.dbpedia.org/sparql"
@@ -93,7 +92,6 @@ def searchLocation(pronouns, text):
         tmpTaggedText = ''
         for i in range(split_len-1): # For each pronoun p found in text
             print('\t\t'+str(i+1)+'/'+str(split_len)+' candidates')
-            print(i, i+1)
             
             #Get environement : 10 words in 200 caracteres before and after 
             beforPronoun = splitedText[i][-min(200, len(splitedText[i])):].split(' ')
@@ -106,14 +104,12 @@ def searchLocation(pronouns, text):
             couples += tmpCouples
             tmpTaggedText += splitedText[i]+' '.join(pronoun) #Add the pronoun and the text before
             
-            if i+2 == split_len :#If it's the last pronun, add the texte after it
+            if i+2 == split_len :#If it's the last pronoun, add the texte after it
                 tmpTaggedText += splitedText[-1] 
                 
         print('')
         
         if tmpTaggedText : #update tagged text with new pronoun tagged
             taggedText = copy.copy(tmpTaggedText)
-            
-        os.system('rm tmp.txt')
         
     return taggedText, couples

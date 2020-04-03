@@ -47,26 +47,8 @@ def isLocation(location):
 
 
 #Return : taggedText : "text<pronom>text", couples : [(location, pronoun)]
-def around(pronoun, beforePronoun, afterPronoun):
-    couples = []
-    location = False
-    
-    # Verify if each word is a Location via SPARQL
-    for bp in beforePronoun : 
-        if len(bp)>2 and isLocation(bp) :
-            location = True
-            #If it's a location we have a new couple (location, pronoun)
-            couples.append((bp, pronoun))
-    
-    for ap in afterPronoun :
-        if len(ap)>2 and isLocation(ap) :
-            location = True
-            couples.append((ap, pronoun))
-        
-    if location : #pronoun must be TAGGED
-        pronoun = "<pronom>"+pronoun+"</pronom> "
-        
-    return beforePronoun + [pronoun] + afterPronoun, couples
+def around(pronoun, beforePronoun):
+    return [(bp, pronoun) for bp in beforePronoun if len(bp)>2 and isLocation(bp)]
 
 
 def counter() :
@@ -95,17 +77,17 @@ def searchLocation(pronouns, text):
             
             #Get environement : 10 words in 200 caracteres before and after 
             beforePronoun = splitedText[i][-min(100, len(splitedText[i])):].split(' ')
-            afterPronoun = splitedText[i+1][:min(100, len(splitedText[i+1]))].split(' ')
             sepB = - min(10, len(beforePronoun))
-            sepA = min(10, len(afterPronoun))
             
-            pronoun, tmpCouples = around(p, beforePronoun[sepB:], afterPronoun[:sepA])
+            tmpCouples = around(p, beforePronoun[sepB:])
             
-            couples += tmpCouples
-            tmpTaggedText += splitedText[i]+' '.join(pronoun) #Add the pronoun and the text before
+            if tmpCouples :
+                couples += tmpCouples
+                p = "<pronoun>"+p+"</pronoun>"
+                
+            tmpTaggedText += splitedText[i]+p #Add the pronoun and the text before
             
-            if i+2 == split_len : #If it's the last pronoun, add the texte after it
-                tmpTaggedText += splitedText[-1] 
+        tmpTaggedText += splitedText[-1] #Add the text after the last occurence found
                 
         print('')
         

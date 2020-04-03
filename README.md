@@ -34,14 +34,14 @@ Executer la commande depuis le dossier principal
 | PUT | curl -X PUT "http://localhost:5000/texts/textToUpdate.txt" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "file=@newText.txt;type=text/plain" | "text updated" |
 | DELETE | curl -X DELETE "http://localhost:5000/texts/textToDelete.txt" -H "accept: application/json" | "text deleted" |
 ### Graphs
-|VERB|PATH|RESPONSE|
+|VERB|CURL|RESPONSE|
 |----|----|----|
 | POST | curl -X POST "http://localhost:5000/graphs/" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "file=@graphToAdd.grf;type=text/plain" | "'graphToAdd.grf' has been added" |
 | GET | curl -X GET "http://localhost:5000/graphs/" -H "accept: application/json" | [<br>  "graph1.grf",<br>...,<br>"graphN.grf"<br>  ] |
 | PUT | curl -X PUT "http://localhost:5000/graphs/graphToUpdate.txt" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "file=@newGraph.txt;type=text/plain" | "graph updated" |
 | DELETE | curl -X DELETE "http://localhost:5000/graphs/graphToDelete.txt" -H "accept: application/json" | "graph deleted" |
 ### NLP
-|VERB|PATH|RESPONSE|
+|VERB|CURL|RESPONSE|
 |----|----|----|
 | GET | curl -X GET "http://localhost:5000/nlp/graph.fst2&text.txt" -H "accept: application/json" | [<br>anaphore1 ,<br>... ,<br>anaphoreN<br>] |
 

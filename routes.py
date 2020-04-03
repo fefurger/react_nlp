@@ -183,6 +183,8 @@ class PerformNLP(Resource):
         try: #GET TAGS & COUPLES - SPARQL
             taggedText, couples = searchLocation(pronouns, text) 
         except:
+            import traceback
+            print(traceback.print_exc())
             return {"response": "Error while applying graph on text : sparql.searchLocation(prounous, text)"} 
             
         try: #WRITE TAGGED_TEXT

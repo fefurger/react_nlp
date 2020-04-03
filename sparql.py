@@ -91,20 +91,20 @@ def searchLocation(pronouns, text):
         
         tmpTaggedText = ''
         for i in range(split_len-1): # For each pronoun p found in text
-            print('\t\t'+str(i+1)+'/'+str(split_len)+' candidates')
+            print('\t\t'+str(i+1)+'/'+str(split_len-1))
             
             #Get environement : 10 words in 200 caracteres before and after 
-            beforPronoun = splitedText[i][-min(200, len(splitedText[i])):].split(' ')
-            afterPronoun = splitedText[i+1][:min(200, len(splitedText[i+1]))].split(' ')
-            sepB = - min(10, len(beforPronoun))
+            beforePronoun = splitedText[i][-min(100, len(splitedText[i])):].split(' ')
+            afterPronoun = splitedText[i+1][:min(100, len(splitedText[i+1]))].split(' ')
+            sepB = - min(10, len(beforePronoun))
             sepA = min(10, len(afterPronoun))
             
-            pronoun, tmpCouples = around(p, beforPronoun[sepB:], afterPronoun[:sepA])
+            pronoun, tmpCouples = around(p, beforePronoun[sepB:], afterPronoun[:sepA])
             
             couples += tmpCouples
             tmpTaggedText += splitedText[i]+' '.join(pronoun) #Add the pronoun and the text before
             
-            if i+2 == split_len :#If it's the last pronoun, add the texte after it
+            if i+2 == split_len : #If it's the last pronoun, add the texte after it
                 tmpTaggedText += splitedText[-1] 
                 
         print('')
